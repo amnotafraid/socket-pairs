@@ -22,5 +22,4 @@ btn.addEventListener('click', () => {
 socket.on('phoneConnected', (id) => {
   feedback.innerHTML = 'Your phone is now connected';
   phoneSocket = id;
-  console.log('phoneSocket = ' + phoneSocket);
 });

@@ -13,9 +13,7 @@ var mirrorSocket;
 
 // emit events
 btn.addEventListener('click', () => {
-  console.log('click');
   code = message.value;
-  console.log('code in phone = ' + code);
   socket.emit('phone', code);
 });
 
@@ -23,7 +21,6 @@ btn.addEventListener('click', () => {
 socket.on('mirrorConnected', (io) => {
   feedback.innerHTML = 'You are connected to Hat Mirror';
   mirrorSocket = io;
-  console.log('mirrorSocket = ' + mirrorSocket);
 });
 
 socket.on('problem', (message) => {
