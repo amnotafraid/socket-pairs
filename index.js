@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
       }
     }
     if (mirrorSocket === '') {
-      socket.broadcast.to(socket.id).emit('problem', 'no mirror found for that code');
+      socket.emit('problem', 'no mirror found for that code');
     }
     else {
       socket.broadcast.to(mirrorSocket).emit('phoneConnected', socket.id);
