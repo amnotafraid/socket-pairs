@@ -2,10 +2,7 @@
 var socket = io.connect('http://localhost:4000');
 
 // Query DOM
-var message = document.getElementById('message'),
-    handle = document.getElementById('handle'),
-    btn = document.getElementById('send'),
-    output = document.getElementById('output'),
+var btn = document.getElementById('send'),
     feedback = document.getElementById('feedback');
 
 var code;
@@ -19,7 +16,7 @@ btn.addEventListener('click', () => {
 
 // Listen for events
 socket.on('mirrorConnected', (io) => {
-  feedback.innerHTML = 'You are connected to Hat Mirror';
+  feedback.innerHTML = '<p><em>You are connected to Hat Mirror</em></p>';
   mirrorSocket = io;
 });
 
