@@ -6,10 +6,10 @@ body{
 h2{
     font-size: 18px;
     padding: 10px 20px;
-    color: #575ed8;
+    text-align: center;
 }
 
-#mario-chat{
+#area{
     max-width: 600px;
     margin: 30px auto;
     border: 1px solid #ddd;
@@ -17,7 +17,7 @@ h2{
     border-radius: 2px;
 }
 
-#chat-window{
+#area-window{
     height: 400px;
     overflow: auto;
     background: #f9f9f9;
@@ -40,10 +40,27 @@ h2{
     color: #575ed8;
 }
 
+.phone-color {
+    color: #8e7cc3;
+}
+
+.mirror-color {
+    color: #6d9eeb;
+}
+
+.phone-background {
+    background: #8e7cc3;
+}
+
+.mirror-background {
+    background: #6d9eeb;
+}
+
 label{
     box-sizing: border-box;
     display: block;
     padding: 10px 20px;
+    font-family: Nunito;
 }
 
 input{
@@ -60,7 +77,6 @@ input{
 }
 
 button{
-    background: #575ed8;
     color: #fff;
     font-size: 18px;
     border: 0;
