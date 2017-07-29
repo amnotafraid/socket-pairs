@@ -19,7 +19,7 @@ Start in mirror.html.  Generate a code.  Then, enter that code in phone.html.
 
 | Phone         | Mirror        |
 | :-----------: |:-------------:|
-| <img width="310" alt="phone" src="https://user-images.githubusercontent.com/1727761/28746513-6360af68-7453-11e7-95e5-18f17f2ccce9.png">      | <img width="307" alt="mirror" src="https://user-images.githubusercontent.com/1727761/28746486-fa1e1d38-7452-11e7-8727-7aafe24e98e0.png"> |
+| <img width="310" alt="phone" src="https://user-images.githubusercontent.com/1727761/28746513-6360af68-7453-11e7-95e5-18f17f2ccce9.png">      | <img width="310" alt="phone" src="https://user-images.githubusercontent.com/1727761/28746556-a57e9a9e-7454-11e7-84de-019dd97ea6ab.png"> |
 
 
 
