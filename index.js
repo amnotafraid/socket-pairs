@@ -22,35 +22,42 @@ io.on('connection', (socket) => {
 	socket.on('mirror', (code) => {
     let bUpdated = false;
     for (let i = 0; i < clients.length; i++) {
-      if (clients[i].id === socket.id) {
-        clients[i].type = 'mirror';
+      if (clients[i].mirrorSocketId === socket.id) {
         clients[i].code = code;
         bUpdated = true;
+        if (clients[i].hasOwnProperty('clientSocketId')) {
+          socket.broadcast.to(clients[i].mirrorSocketId).emit('problem', 'mirror has new code');
+          delete clients[i].mirrorSocketId;
+        }
         break;
       }
     }
     if (!bUpdated) {
       let obj = {};
-      obj['id'] = socket.id;
-      obj['type'] = 'mirror';
+      obj['mirrorSocketId'] = socket.id;
       obj['code'] = code;
       clients.push(obj);
     }
 	});
   socket.on('phone', (code) => {
-    let mirrorSocket = '';
+    let mirrorSocketId = '';
     for (let i = 0; i < clients.length; i++) {
       if (clients[i].code == code &&
-          clients[i].type == 'mirror') {
-        mirrorSocket = clients[i].id;
+          clients[i].hasOwnProperty('mirrorSocketId')) {
+        mirrorSocketId = clients[i].mirrorSocketId;
+        if (clients[i].hasOwnProperty('phoneSocketId') &&
+            clients[i].phoneSocketId !== socket.id) {
+          socket.broadcast.to(clients[i].phoneSocketId).emit('problem', 'different phone connected');
+        }
+        clients[i].phoneSocketId = socket.id;
       }
     }
-    if (mirrorSocket === '') {
+    if (mirrorSocketId === '') {
       socket.emit('problem', 'no mirror found for that code');
     }
     else {
-      socket.broadcast.to(mirrorSocket).emit('phoneConnected', socket.id);
-      socket.emit('mirrorConnected', mirrorSocket);
+      socket.broadcast.to(mirrorSocketId).emit('phoneConnected', socket.id);
+      socket.emit('mirrorConnected', mirrorSocketId);
     }
   });
 });
