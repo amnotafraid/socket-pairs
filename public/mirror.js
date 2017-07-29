@@ -12,7 +12,10 @@ var phoneSocket;
 // emit events
 btn.addEventListener('click', () => {
   code = Math.floor(100000 + Math.random() * 900000);
-  output.innerHTML = '<p>Scan</p><img src="qr.png"><p>or go to http://localhost:4000/phone.html</br>and enter <strong>' + code + '</strong></p>';
+  output.innerHTML = '<p>Scan</p>'
+                    +'<img src="qr.png">'
+                    +'<p>or go to http://localhost:4000/phone.html</br>'
+                    +'and enter <strong>' + code + '</strong></p>';
   feedback.innerHTML = '<p></p>';
   socket.emit('mirror', code);
 });

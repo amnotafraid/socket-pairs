@@ -3,6 +3,7 @@ var socket = io.connect('http://localhost:4000');
 
 // Query DOM
 var btn = document.getElementById('send'),
+    message = document.getElementById('message'),
     feedback = document.getElementById('feedback');
 
 var code;
