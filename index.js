@@ -25,8 +25,8 @@ io.on('connection', (socket) => {
       if (clients[i].mirrorSocketId === socket.id) {
         clients[i].code = code;
         bUpdated = true;
-        if (clients[i].hasOwnProperty('clientSocketId')) {
-          socket.broadcast.to(clients[i].mirrorSocketId).emit('problem', 'mirror has new code');
+        if (clients[i].hasOwnProperty('phoneSocketId')) {
+          socket.broadcast.to(clients[i].phoneSocketId).emit('problem', 'mirror has new code');
           delete clients[i].mirrorSocketId;
         }
         break;
