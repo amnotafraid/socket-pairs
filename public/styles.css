@@ -38,10 +38,20 @@ h2{
     margin-right: auto;
 }
 
+#feedback p.problem{
+    color: #a33a9d;
+    padding: 14px 0px;
+    margin: 0 20px;
+}
+
 #feedback p{
     color: #aaa;
     padding: 14px 0px;
     margin: 0 20px;
+}
+
+.problem-color {
+    color: #a33a9d;
 }
 
 #output strong{

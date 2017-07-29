@@ -20,28 +20,32 @@ io.on('connection', (socket) => {
 	console.log('made socket connection, id = ', socket.id);
 
   socket.on('disconnect', (socket) => {
-    // TODO figure out how to delete clients when they are closed
+    // tell other pair it's deleted and remove from clients
     for (let i = 0; i < clients.length; i++) {
       let bRemove = false;
-      if (clients[i].hasOwnProperty('phoneSocketId') &&
-          clients[i].phoneSocketId == socket.id) { // phone disconnected
-        bRemove = true;
-        if (clients[i].hasOwnProperty('mirrorSocketId')) {
-          socket.broadcast.to(clients[i].mirrorSocketId).emit('problem', 'phone disconnected');
+      let client = clients[i];
+      if (client.hasOwnProperty('phoneSocketId')) { // check phone
+        if (io.sockets.sockets[client.phoneSocketId] == undefined) { // phone disconnected
+          bRemove = true;
+          if (client.hasOwnProperty('mirrorSocketId')) { // tell mirror
+            io.to(client.mirrorSocketId).emit('problem', 'phone disconnected');
+          }
         }
       }
-      if (clients[i].hasOwnProperty('mirrorSocketId') &&
-          clients[i].mirrorSocketId == socket.id) { // mirror disconnected
-        bRemove = true;
-        if (clients[i].hasOwnProperty('phoneSocketId')) {
-          socket.broadcast.to(clients[i].phoneSocketId).emit('problem', 'mirror disconnected');
+      if (!bRemove) { // not phone socket
+        if (client.hasOwnProperty('mirrorSocketId')) { // check mirror
+          if (io.sockets.sockets[client.mirrorSocketId] == undefined) { // mirror disconnected
+            bRemove = true;
+            if (client.hasOwnProperty('phoneSocketId')) { // tell phone
+              io.to(client.phoneSocketId).emit('problem', 'mirror disconnected');
+            }
+          }
         }
       }
       if (bRemove) {
         clients.splice(i, 1);
       }
-    } 
-    console.log('clients = ' + JSON.stringify(clients, null, 2));
+    }
   });
 	socket.on('mirror', (code) => {
     let bUpdated = false;

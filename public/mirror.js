@@ -23,3 +23,7 @@ socket.on('phoneConnected', (id) => {
   feedback.innerHTML = '<p><em>Your phone is now connected</em></p>';
   phoneSocket = id;
 });
+
+socket.on('problem', (message) => {
+  feedback.innerHTML = '<p class="problem"><em>' + message + '</em></p>';
+});
