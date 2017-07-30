@@ -23,4 +23,5 @@ socket.on('mirrorConnected', (io) => {
 
 socket.on('problem', (message) => {
   feedback.innerHTML = '<p class="problem"><em>' + message + '</em></p>';
+  mirrorSocket = null;
 });

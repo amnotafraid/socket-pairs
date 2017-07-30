@@ -17,6 +17,7 @@ btn.addEventListener('click', () => {
                     +'<p>or go to http://localhost:4000/phone.html</br>'
                     +'and enter <strong>' + code + '</strong></p>';
   feedback.innerHTML = '<p></p>';
+  phoneSocket = null;
   socket.emit('mirror', code);
 });
 
@@ -29,4 +30,5 @@ socket.on('phoneConnected', (id) => {
 
 socket.on('problem', (message) => {
   feedback.innerHTML = '<p class="problem"><em>' + message + '</em></p>';
+  phoneSocket = null;
 });
