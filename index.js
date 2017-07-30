@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
       }
     }
   });
-	socket.on('mirror', (code) => {
+  socket.on('mirror', (code) => {
     let bUpdated = false;
     for (let i = 0; i < clients.length; i++) {
       if (clients[i].mirrorSocketId == socket.id) {
@@ -66,7 +66,7 @@ io.on('connection', (socket) => {
       obj['code'] = code;
       clients.push(obj);
     }
-	});
+  });
   socket.on('phone', (code) => {
     let mirrorSocketId = '';
     for (let i = 0; i < clients.length; i++) {
